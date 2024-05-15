@@ -1,0 +1,97 @@
+/* Reset some default to maintain consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+/* Intro Page Styles */
+#intro-page {
+    text-align: center;
+    padding-top: 50px;
+}
+
+#intro-page h2 {
+    margin-top: 20px;
+}
+
+#intro-page ul {
+    list-style: none;
+}
+
+#intro-page ul li {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Calculator Page Styles */
+#calculator-page {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+#input-container {
+    margin-bottom: 20px;
+}
+
+#input-container input {
+    background: #e7e7e7;
+    border: none;
+    padding: 15px;
+    margin: 10px 0;
+    width: calc(50% - 22px);
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: red;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+/* Additional Styling */
+ul {
+    padding: 0;
+    list-style-position: inside;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.spacer {
+    height: 100vh; /* Membuat spacer/ruang berjarak setara dengan ketinggian layar */
+}
