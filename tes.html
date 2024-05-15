@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Vektor</title>
+    <style>
+        .result {
+            margin-top: 20px;
+        }
+        canvas {
+            max-width: 500px;
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <section id="penjelasan-materi">
+        <h2>Penjelasan Materi</h2>
+        <p>
+            Pada bagian ini, Anda akan mempelajari dasar-dasar operasi vektor seperti penjumlahan, pengurangan, dan perkalian dot produk. Selain itu, Anda juga akan memahami cara menghitung sudut antara dua vektor. Pengetahuan ini penting untuk memahami konsep vektor dalam matematika dan aplikasinya dalam berbagai bidang seperti fisika dan ilmu komputer. Klik tombol di bawah untuk mempelajari lebih lanjut.
+        </p>
+        <button onclick="window.location.href='materi-lengkap.html'">Pelajari Lebih Lanjut</button>
+    </section>
+
+    <section id="kalkulator-vektor">
+        <h2>Kalkulator Vektor</h2>
+        <form id="vector-form">
+            <label for="vector1">Vektor 1 (mis. 1,2,3):</label>
+            <input type="text" id="vector1" name="vector1" required>
+            <br>
+            <label for="vector2">Vektor 2 (mis. 4,5,6):</label>
+            <input type="text" id="vector2" name="vector2" required>
+            <br>
+            <button type="button" onclick="calculate()">Hitung</button>
+        </form>
+        <div id="result" class="result"></div>
+        <canvas id="vectorChart"></canvas>
+    </section>
+
+    <!-- Include math.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.2.0/math.min.js"></script>
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        function parseVector(vectorString) {
+            return vectorString.split(',').map(Number);
+        }
+
+        function calculate() {
+            const vector1 = parseVector(document.getElementById('vector1').value);
+            const vector2 = parseVector(document.getElementById('vector2').value);
+
+            // Menggunakan math.js untuk operasi vektor
+            const sum = math.add(vector1, vector2);
+            const difference = math.subtract(vector1, vector2);
+            const dot = math.dot(vector1, vector2);
+
+            document.getElementById('result').innerHTML = `
+                <p>Penjumlahan: [${sum.join(', ')}]</p>
+                <p>Pengurangan: [${difference.join(', ')}]</p>
+                <p>Dot Produk: ${dot}</p>
+            `;
+
+            drawVectors(vector1, vector2, sum);
+        }
+
+        function drawVectors(vector1, vector2, sum) {
+            const ctx = document.getElementById('vectorChart').getContext('2d');
+            const data = {
+                datasets: [
+                    {
+                        label: 'Vector 1',
+                        data: [{ x: 0, y: 0 }, { x: vector1[0], y: vector1[1] }],
+                        borderColor: 'red',
+                        fill: false,
+                        showLine: true
+                    },
+                    {
+                        label: 'Vector 2',
+                        data: [{ x: 0, y: 0 }, { x: vector2[0], y: vector2[1] }],
+                        borderColor: 'blue',
+                        fill: false,
+                        showLine: true
+                    },
+                    {
+                        label: 'Sum',
+                        data: [{ x: 0, y: 0 }, { x: sum[0], y: sum[1] }],
+                        borderColor: 'green',
+                        fill: false,
+                        showLine: true
+                    }
+                ]
+            };
+
+            new Chart(ctx, {
+                type: 'scatter',
+                data: data,
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: {
+                                display: true,
+                                text: 'X'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Y'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
